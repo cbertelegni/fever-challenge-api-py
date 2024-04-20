@@ -1,10 +1,32 @@
-# Makefile commands
+# Fever code challenge - Cristian Bertelegni
 
+....
+
+## Running the app:
+
+1 - Open a terminal and run the applicacion: `make run`
+2 - Open a browser and enter to `http://0.0.0.0:8000/docs` or `http://0.0.0.0:8000/redoc`  
+
+This project are using FastApi to serve the aplication. 
+
+
+## Prerequisites to contribute:
+
+Intalling precommit to pre-commit
+
+```bash
+pip install -r requirements-dev.txt
+pre-commit install -t pre-commit -t pre-push
+```
+
+
+## Makefile commands
+
+* **make build**: Build the docker images
 * **make run**: Run the application running on docker
 * **make tests**: Run the tests application
 * **make coverage**: Run the test coverage for the application
-    * Open `./htmlcov/index.html` in a browser to see the test coverage
-
+    * Open `./htmlcov/index.html` in a browser to see the test coverage for this aplication
 
 
 
