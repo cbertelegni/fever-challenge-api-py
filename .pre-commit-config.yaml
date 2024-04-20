@@ -1,0 +1,15 @@
+default_stages: [commit, push]
+repos:
+  -   repo: https://github.com/pycqa/flake8
+      rev: 6.1.0
+      hooks:
+      -   id: flake8
+          name: flake8 except __init__.py
+          args: [--exclude=__init__.py, --max-line-length=120]
+          types: [python]
+          files: ^app/
+      -   id: flake8
+          name: flake8 only __init__.py
+          args: [--extend-ignore=F401]
+          types: [python]
+          files: ^app/.*(__init__.py)$

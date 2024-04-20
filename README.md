@@ -1,3 +1,14 @@
+# Makefile commands
+
+* **make run**: Run the application running on docker
+* **make tests**: Run the tests application
+* **make coverage**: Run the test coverage for the application
+    * Open `./htmlcov/index.html` in a browser to see the test coverage
+
+
+
+
+
 # Fever code challenge
 
 Hello! Glad you are on this step of the process. We would like to see how you are doing while coding and this exercise
