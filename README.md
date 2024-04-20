@@ -1,13 +1,17 @@
 # Fever code challenge - Cristian Bertelegni
 
-....
+This is a FastApi application. Sqlalchemy was used as ORM and Alembic to handle the migrations of the data base.
+This project has **100% of coverage** tests.
+The developed process was by TDD metodology.
+Pytest is the main library to do the tests and Responses to mock and block externals request.
+
 
 ## Running the app:
 
-1 - Open a terminal and run the applicacion: `make run`
-2 - Open a browser and enter to `http://0.0.0.0:8000/docs` or `http://0.0.0.0:8000/redoc`  
-
-This project are using FastApi to serve the aplication. 
+1 - Make a copy of `app/.template.env` to `app/.env`
+2 - Open a terminal and run the tests: `make tests`
+3 - Open a terminal and run the applicacion: `make run`
+4 - Open a browser and enter to `http://0.0.0.0:8000/docs` or `http://0.0.0.0:8000/redoc` to try the application   
 
 
 ## Prerequisites to contribute:
