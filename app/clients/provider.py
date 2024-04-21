@@ -7,7 +7,7 @@ class ProviderClient(BaseClient):
     def create(cls, base_url=settings.PROVIDER_BASE_URL):
         return cls(base_url=base_url)
 
-    def fetch_events(self):
+    def fetch_xml_events(self):
         method = "api/events"
         response = self.get(method)
         response.raise_for_status()

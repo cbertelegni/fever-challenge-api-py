@@ -25,5 +25,5 @@ class TestProviderClient:
 
     def test_fetch_events(self, mocked_apievents_xml):
         provider = ProviderClient.create()
-        content = provider.fetch_events()
+        content = provider.fetch_xml_events()
         assert content == events_xml_response

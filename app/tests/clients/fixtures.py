@@ -16,7 +16,7 @@ events_xml_response = b"""
          </event>
       </base_event>
       <base_event base_event_id="444" sell_mode="offline" organizer_company_id="1" title="Tributo a Juanito Valderrama">
-         <event event_start_date="2021-09-31T20:00:00" event_end_date="2021-09-31T20:00:00" event_id="1642" sell_from="2021-02-10T00:00:00" sell_to="2021-09-31T19:50:00" sold_out="false">
+         <event event_start_date="2021-09-30T20:00:00" event_end_date="2021-09-30T20:00:00" event_id="1642" sell_from="2021-02-10T00:00:00" sell_to="2021-09-31T19:50:00" sold_out="false">
             <zone zone_id="7" capacity="22" price="65.00" name="Amfiteatre" numbered="false" />
          </event>
       </base_event>

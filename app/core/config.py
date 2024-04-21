@@ -11,10 +11,13 @@ class Settings(BaseSettings):
     DATABASE_PORT: str
     DATABASE_NAME: str
     DATABASE_ARGS: str = ""
+    SQLALCHEMY_POOL_SIZE: int = 15
+    POSTGRES_USER: str
+    POSTGRES_PASSWORD: str
 
     class Config:
         case_sensitive = True
-        # env_file = ".env"
+        env_file = ".env"
 
 
 settings = Settings()

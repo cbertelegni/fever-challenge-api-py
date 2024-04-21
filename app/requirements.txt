@@ -8,3 +8,4 @@ alembic==1.13.1
 requests==2.31.0
 pytest==8.1.1
 responses==0.25.0
+psycopg2-binary==2.8.5

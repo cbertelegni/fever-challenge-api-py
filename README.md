@@ -9,8 +9,11 @@ Pytest is the main library to do the tests and Responses to mock and block exter
 ## Running the app:
 
 1 - Make a copy of `app/.template.env` to `app/.env`
-2 - Open a terminal and run the tests: `make tests`
+
+2 - Open a terminal and run the tests: `make tests` 
+
 3 - Open a terminal and run the applicacion: `make run`
+
 4 - Open a browser and enter to `http://0.0.0.0:8000/docs` or `http://0.0.0.0:8000/redoc` to try the application   
 
 
@@ -23,6 +26,11 @@ pip install -r requirements-dev.txt
 pre-commit install -t pre-commit -t pre-push
 ```
 
+## Considerations:
+
+* The `base_event_id="444"` has a bug in the date. I don't know if that's on purpose.
+
+
 
 ## Makefile commands
 
@@ -32,7 +40,7 @@ pre-commit install -t pre-commit -t pre-push
 * **make coverage**: Run the test coverage for the application
     * Open `./htmlcov/index.html` in a browser to see the test coverage for this aplication
 
-
+____________
 
 
 # Fever code challenge
