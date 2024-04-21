@@ -1,8 +1,8 @@
 """Events table
 
-Revision ID: af9ffd93e9fa
+Revision ID: 6c04efe58fd2
 Revises:
-Create Date: 2024-04-21 04:20:19.872166
+Create Date: 2024-04-21 06:11:09.614213
 
 """
 from typing import Sequence, Union
@@ -12,7 +12,7 @@ import sqlalchemy as sa
 from sqlalchemy.dialects import postgresql
 
 # revision identifiers, used by Alembic.
-revision: str = 'af9ffd93e9fa'
+revision: str = '6c04efe58fd2'
 down_revision: Union[str, None] = None
 branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None
@@ -26,9 +26,15 @@ def upgrade() -> None:
         sa.Column('title', sa.Text(), nullable=False),
         sa.Column('event_start_date', sa.DateTime(), nullable=True),
         sa.Column('event_end_date', sa.DateTime(), nullable=True),
+        sa.Column('sell_mode', sa.Text(), nullable=False),
+        sa.Column('start_date', sa.Text(), nullable=False),
+        sa.Column('end_date', sa.Text(), nullable=False),
+        sa.Column('start_time', sa.Text(), nullable=False),
+        sa.Column('end_time', sa.Text(), nullable=False),
         sa.Column('min_price', sa.Float(), nullable=True),
         sa.Column('max_price', sa.Float(), nullable=True),
         sa.Column('event_id', sa.INTEGER(), nullable=True),
+        sa.Column('base_event_id', sa.INTEGER(), nullable=True),
         sa.Column('created_at', sa.DateTime(), nullable=True),
         sa.Column('updated_at', sa.DateTime(), nullable=True),
         sa.PrimaryKeyConstraint('id')

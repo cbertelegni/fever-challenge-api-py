@@ -10,11 +10,13 @@ Pytest is the main library to do the tests and Responses to mock and block exter
 
 1 - Make a copy of `app/.template.env` to `app/.env`
 
-2 - Open a terminal and run the tests: `make tests` 
+2 - Open a terminal and run the migrations: `make db upgrade`
 
-3 - Open a terminal and run the applicacion: `make run`
+3 - Open a terminal and run the tests: `make tests` 
 
-4 - Open a browser and enter to `http://0.0.0.0:8000/docs` or `http://0.0.0.0:8000/redoc` to try the application   
+4 - Open a terminal and run the applicacion: `make run`
+
+5 - Open a browser and enter to `http://0.0.0.0:8000/docs` or `http://0.0.0.0:8000/redoc` to try the application   
 
 
 ## Prerequisites to contribute:
@@ -29,7 +31,7 @@ pre-commit install -t pre-commit -t pre-push
 ## Considerations:
 
 * The `base_event_id="444"` has a bug in the date. I don't know if that's on purpose.
-
+* The data update must be from a celery worker, for a faster implementation the data update is on demand from an exposed method in the API 
 
 
 ## Makefile commands

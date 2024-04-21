@@ -3,7 +3,7 @@ import xml.etree.ElementTree as ET
 from pydantic import ValidationError
 from fastapi import Depends
 from app.clients.provider import ProviderClient
-from app.schemas.events import EventSchema
+from app.schemas.events import EventOrmSchema
 from app.crud.events import EventsCrud
 from sqlalchemy.orm import Session
 from app.db.session import get_db
@@ -23,13 +23,20 @@ class EventsXmlParserService:
         ))
         return event_data
 
-    def parse_events(self, xml_str: str) -> List[EventSchema]:
+    def _fill_event_dates(self, event: EventOrmSchema):
+        event.start_date = event.event_start_date.strftime("%Y-%m-%d")
+        event.start_time = event.event_start_date.strftime("%H:%M:%S")
+        event.end_date = event.event_end_date.strftime("%Y-%m-%d")
+        event.end_time = event.event_end_date.strftime("%H:%M:%S")
+
+    def parse_events(self, xml_str: str) -> List[EventOrmSchema]:
         root = ET.fromstring(xml_str)
         events = []
         for base_event in root.findall('output')[0].findall('base_event'):
             event_data = self._get_event_data(base_event=base_event)
             try:
-                event = EventSchema(**event_data)
+                event = EventOrmSchema(**event_data)
+                self._fill_event_dates(event=event)
             except ValidationError:
                 logging.exception('Event Bad formated!')
             else:
@@ -65,4 +72,4 @@ class EventService:
             self.events_crud.create_or_update(payload=event)
 
     def get_events(self):
-        return []
+        return self.events_crud.get_events()
