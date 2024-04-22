@@ -2,21 +2,20 @@
 
 This is a FastApi application. Sqlalchemy was used as ORM and Alembic to handle the migrations of the data base.
 This project has **100% of coverage** tests.
-The developed process was by TDD metodology.
+The developed process was using TDD metodology.
 Pytest is the main library to do the tests and Responses to mock and block externals request.
+
+The data was pre-calculate before save to avoid parsing it on each request
+I added a header response (**x-process-time**) to know the time process of the resquest. The expected time is between 3ms to 30ms.
 
 
 ## Running the app:
 
 1 - Make a copy of `app/.template.env` to `app/.env`
 
-2 - Open a terminal and run the migrations: `make db upgrade`
+2 - Open a terminal and run the migrations: `make run`
 
-3 - Open a terminal and run the tests: `make tests` 
-
-4 - Open a terminal and run the applicacion: `make run`
-
-5 - Open a browser and enter to `http://0.0.0.0:8000/docs` or `http://0.0.0.0:8000/redoc` to try the application   
+3 - Open a browser on `http://0.0.0.0:8000/docs` or `http://0.0.0.0:8000/redoc`
 
 
 ## Prerequisites to contribute:
@@ -28,11 +27,6 @@ pip install -r requirements-dev.txt
 pre-commit install -t pre-commit -t pre-push
 ```
 
-## Considerations:
-
-* The `base_event_id="444"` has a bug in the date. I don't know if that's on purpose.
-* The data update must be from a celery worker, for a faster implementation the data update is on demand from an exposed method in the API 
-
 
 ## Makefile commands
 
@@ -41,6 +35,14 @@ pre-commit install -t pre-commit -t pre-push
 * **make tests**: Run the tests application
 * **make coverage**: Run the test coverage for the application
     * Open `./htmlcov/index.html` in a browser to see the test coverage for this aplication
+
+
+## Knowed issued and Considerations:
+
+* The `base_event_id="444"` has a bug in the date. I don't know if that's on purpose.
+* The data update must be from a celery worker, for a faster implementation the data update is on demand from an exposed method in the API 
+* The tests fail the first time they are run through the migrations, you have to run the command again.
+
 
 ____________
 

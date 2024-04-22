@@ -4,7 +4,7 @@ from fastapi import status
 from app.core.config import settings
 from urllib.parse import urljoin
 from app.clients.provider import ProviderClient
-from app.tests.clients.fixtures import events_xml_response
+from app.tests.fixtures import events_xml_response
 
 
 class TestProviderClient:

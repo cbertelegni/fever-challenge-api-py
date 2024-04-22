@@ -24,3 +24,6 @@ class Event(Base):
     base_event_id = Column(INT, nullable=True)
     created_at = Column(DateTime, default=datetime.now)
     updated_at = Column(DateTime, default=datetime.now, onupdate=datetime.now)
+
+    def __repr__(self) -> str:
+        return f"<Event(base_event_id={self.base_event_id}, event_id={self.event_id})>"

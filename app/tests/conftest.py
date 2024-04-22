@@ -14,7 +14,7 @@ def test_client():
     yield client
 
 
-@pytest.fixture(scope="function", autouse=False)
+@pytest.fixture(scope="function", autouse=True)
 def mocked_responses():
     with responses.RequestsMock() as mock_requests:
         yield mock_requests
@@ -22,12 +22,6 @@ def mocked_responses():
 
 engine = create_engine(make_sqlalchemy_database_uri() + "_test")
 Session = sessionmaker(autocommit=False, autoflush=False, bind=engine)
-
-
-def override_db_session():
-    session = Session()
-    yield session
-    session.close()
 
 
 @pytest.fixture(scope="module")
@@ -48,6 +42,12 @@ def session(connection):
     finally:
         session.close()
         transaction.rollback()
+
+
+def override_db_session():
+    session = Session()
+    yield session
+    session.close()
 
 
 app.dependency_overrides[get_db] = override_db_session

@@ -1,3 +1,4 @@
+from datetime import datetime
 from sqlalchemy.orm import Session
 from app.models.events import Event
 from app.schemas.events import EventOrmSchema
@@ -16,6 +17,10 @@ class EventsCrud:
             self.db.add(event)
         self.db.commit()
 
-    def get_events(self):
+    def get_events(self, event_start_date: datetime = None, event_end_date: datetime = None):
         events = self.db.query(Event).filter_by(sell_mode='online')
+        if event_start_date:
+            events = events.filter(Event.event_start_date >= event_start_date)
+        if event_end_date:
+            events = events.filter(Event.event_end_date <= event_end_date)
         return events.all()

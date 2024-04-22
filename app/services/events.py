@@ -1,3 +1,4 @@
+from datetime import datetime
 from typing import List
 import xml.etree.ElementTree as ET
 from pydantic import ValidationError
@@ -8,6 +9,7 @@ from app.crud.events import EventsCrud
 from sqlalchemy.orm import Session
 from app.db.session import get_db
 import logging
+logging.basicConfig(level=logging.INFO)
 
 
 class EventsXmlParserService:
@@ -37,8 +39,8 @@ class EventsXmlParserService:
             try:
                 event = EventOrmSchema(**event_data)
                 self._fill_event_dates(event=event)
-            except ValidationError:
-                logging.exception('Event Bad formated!')
+            except ValidationError as err:
+                logging.error(f'{err}')
             else:
                 events.append(event)
         return events
@@ -66,10 +68,15 @@ class EventService:
         )
 
     def update_events_from_provider(self):
+        logging.info('Updating data from provider...')
         events_xml = self.provider_client.fetch_xml_events()
         events = self.parser_service.parse_events(events_xml)
         for event in events:
             self.events_crud.create_or_update(payload=event)
+        logging.info('...Update Done.')
 
-    def get_events(self):
-        return self.events_crud.get_events()
+    def get_events(self, event_start_date: datetime = None, event_end_date: datetime = None):
+        return self.events_crud.get_events(
+            event_start_date=event_start_date,
+            event_end_date=event_end_date
+        )
