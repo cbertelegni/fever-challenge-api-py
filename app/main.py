@@ -11,6 +11,7 @@ app = FastAPI(title=settings.PROJECT_NAME)
 
 @app.on_event("startup")
 def startup_event():
+    """This method must be moved to a celery task"""
     db = next(get_db())
     try:
         event_service = EventService.create(db=db)
