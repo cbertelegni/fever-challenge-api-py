@@ -18,7 +18,7 @@ RUN adduser -u 5678 --disabled-password --gecos "" appuser && chown -R appuser /
 USER appuser
 
 FROM feverchallenge_app_base as celery
-CMD celery -A app.core.celery worker -Q celery_exposure_v3 -l DEBUG
+CMD celery -A app.core.celery worker -Q celery_feverchallenge -l DEBUG
 
 
 FROM feverchallenge_app_base as feverchallenge_app
